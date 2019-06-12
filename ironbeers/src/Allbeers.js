@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import home_logo from '../public/images/home_logo.PNG';
 import axios from 'axios';
+import { Link } from  'react-router-dom';
+
+import Mynavbar from './Mynavbar';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
@@ -27,7 +30,10 @@ class Allbeers extends Component{
 
     render(){
         return(
-                        
+            <div>
+          <div>  
+        {Mynavbar()}  
+            </div>
         <div>
         {this.state.mybeers.map((onebeer, index) =>{
             return(
@@ -38,13 +44,15 @@ class Allbeers extends Component{
                     <img className="image-beer" src={onebeer.image_url} alt="Card image cap"/>
                 </div>
                 <div>
-                    <h1>{onebeer.name}</h1>
+                    <h1><Link to={`/${onebeer._id}`}>{onebeer.name}</Link></h1>
+                    <h3>{onebeer.tagline}</h3>
+                    <h6><b>Contributed by:</b>{onebeer.contributed_by}</h6>
                 </div>
                 </div>
             </div>
          );
        })}
-       </div>        
+       </div>   </div>     
         );
 
 
